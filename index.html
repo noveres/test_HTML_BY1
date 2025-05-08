@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Stack Engineer | 1980s Portfolio</title>
+    <style>
+        /* 1980s Terminal Style */
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000;
+            color: #33ff33;
+            font-family: 'VT323', monospace;
+            font-size: 18px;
+            line-height: 1.4;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, transparent 1px, rgba(0, 0, 0, 0.3) 1px, rgba(0, 0, 0, 0.3) 2px);
+            background-size: 100% 2px;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.15;
+        }
+        
+        .container {
+            border: 2px solid #33ff33;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(51, 255, 51, 0.05);
+            pointer-events: none;
+        }
+        
+        h1, h2, h3 {
+            color: #33ff33;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px #33ff33;
+        }
+        
+        h2 {
+            font-size: 24px;
+            border-bottom: 1px solid #33ff33;
+            padding-bottom: 5px;
+        }
+        
+        h3 {
+            font-size: 20px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        a {
+            color: #ffbf00;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffbf00;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: #ffffff;
+            border-bottom: 1px solid #ffffff;
+            text-shadow: 0 0 5px #ffbf00;
+        }
+        
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .ascii-art {
+            font-size: 12px;
+            line-height: 1.2;
+            white-space: pre;
+            text-align: center;
+            margin: 20px 0;
+            color: #33ff33;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .skill-item {
+            border: 1px solid #33ff33;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        .project {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #33ff33;
+        }
+        
+        .project:last-child {
+            border-bottom: none;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        @media (min-width: 600px) {
+            .project-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .project-image {
+            border: 2px solid #33ff33;
+            position: relative;
+            overflow: hidden;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+        
+        .project-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(50%) hue-rotate(80deg) saturate(140%);
+            transition: all 0.3s ease;
+        }
+        
+        .project-image:hover img {
+            filter: sepia(20%) hue-rotate(60deg) saturate(180%);
+        }
+        
+        .project-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, transparent 1px, rgba(51, 255, 51, 0.1) 1px, rgba(51, 255, 51, 0.1) 2px);
+            background-size: 100% 2px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .project-image::after {
+            content: "LOADING...";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #33ff33;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .project-image:hover::after {
+            opacity: 1;
+        }
+        
+        .project-details {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-links {
+            margin-top: 10px;
+        }
+        
+        .project-link {
+            display: inline-block;
+            margin-right: 15px;
+            background-color: #000;
+            color: #33ff33;
+            border: 1px solid #33ff33;
+            padding: 5px 10px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            background-color: #33ff33;
+            color: #000;
+            border-color: #33ff33;
+            text-shadow: none;
+        }
+        
+        .contact-form {
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            background-color: #000;
+            border: 1px solid #33ff33;
+            color: #33ff33;
+            padding: 8px;
+            font-family: 'VT323', monospace;
+            font-size: 18px;
+        }
+        
+        button {
+            background-color: #000;
+            color: #33ff33;
+            border: 1px solid #33ff33;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: 'VT323', monospace;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        
+        button:hover {
+            background-color: #33ff33;
+            color: #000;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #33ff33;
+        }
+        
+        /* Terminal typing effect */
+        .typing::after {
+            content: "_";
+            animation: blink 1s step-end infinite;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+                font-size: 16px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>FULL-STACK ENGINEER<span class="blink">_</span></h1>
+        <p>SYSTEM READY. PORTFOLIO LOADED.</p>
+    </div>
+    
+    <div class="ascii-art">
+ _____     _ _     _             _    
+|  ___|  _| | |___| |_ __ _  ___| | __
+| |_ | | | | / __| __/ _` |/ __| |/ /
+|  _|| |_| | \__ \ || (_| | (__|   < 
+|_|   \__,_|_|___/\__\__,_|\___|_|\_\
+    </div>
+    
+    <div class="container">
+        <h2>> ABOUT ME</h2>
+        <p class="typing">Experienced full-stack engineer with expertise in building robust web applications. Proficient in both front-end and back-end technologies with a passion for clean, efficient code and user-centered design.</p>
+        <p>SYSTEM SPECS: Problem solver, team player, continuous learner.</p>
+    </div>
+    
+    <div class="container">
+        <h2>> TECHNICAL SKILLS</h2>
+        <div class="skills-grid">
+            <div class="skill-item">HTML5</div>
+            <div class="skill-item">CSS3</div>
+            <div class="skill-item">JavaScript</div>
+            <div class="skill-item">TypeScript</div>
+            <div class="skill-item">React</div>
+            <div class="skill-item">Node.js</div>
+            <div class="skill-item">Express</div>
+            <div class="skill-item">MongoDB</div>
+            <div class="skill-item">SQL</div>
+            <div class="skill-item">Git</div>
+            <div class="skill-item">RESTful APIs</div>
+            <div class="skill-item">GraphQL</div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>> WORK EXPERIENCE</h2>
+        
+        <div class="project">
+            <h3>SENIOR FULL-STACK DEVELOPER</h3>
+            <p>TECH INNOVATIONS INC. | 2020 - PRESENT</p>
+            <ul>
+                <li>Developed and maintained multiple web applications using React and Node.js</li>
+                <li>Implemented RESTful APIs and database schemas</li>
+                <li>Optimized application performance and reduced load times by 40%</li>
+                <li>Collaborated with UX/UI designers to implement responsive designs</li>
+            </ul>
+        </div>
+        
+        <div class="project">
+            <h3>FULL-STACK DEVELOPER</h3>
+            <p>WEB SOLUTIONS CO. | 2017 - 2020</p>
+            <ul>
+                <li>Built and deployed web applications for various clients</li>
+                <li>Managed database design and implementation</li>
+                <li>Integrated third-party APIs and services</li>
+                <li>Mentored junior developers and conducted code reviews</li>
+            </ul>
+        </div>
+        
+        <div class="project">
+            <h3>FRONT-END DEVELOPER</h3>
+            <p>DIGITAL CREATIONS | 2015 - 2017</p>
+            <ul>
+                <li>Created responsive user interfaces using HTML, CSS, and JavaScript</li>
+                <li>Collaborated with back-end developers to integrate front-end with server-side logic</li>
+                <li>Implemented UI/UX improvements based on user feedback</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>> PROJECTS</h2>
+        
+        <div class="project">
+            <div class="project-grid">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="E-Commerce Platform Preview">
+                </div>
+                <div class="project-details">
+                    <h3>E-COMMERCE PLATFORM</h3>
+                    <p>A full-featured online shopping platform with user authentication, product catalog, shopping cart, and payment processing.</p>
+                    <p>TECH STACK: React, Node.js, Express, MongoDB, Stripe API</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">DEMO</a>
+                        <a href="#" class="project-link">CODE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="project">
+            <div class="project-grid">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Task Management System Preview">
+                </div>
+                <div class="project-details">
+                    <h3>TASK MANAGEMENT SYSTEM</h3>
+                    <p>A collaborative task management application with real-time updates, user roles, and project tracking features.</p>
+                    <p>TECH STACK: React, TypeScript, Node.js, Socket.io, PostgreSQL</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">DEMO</a>
+                        <a href="#" class="project-link">CODE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="project">
+            <div class="project-grid">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Weather Dashboard Preview">
+                </div>
+                <div class="project-details">
+                    <h3>WEATHER DASHBOARD</h3>
+                    <p>An interactive weather application displaying current conditions and forecasts with data visualization.</p>
+                    <p>TECH STACK: HTML, CSS, JavaScript, Chart.js, Weather API</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">DEMO</a>
+                        <a href="#" class="project-link">CODE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>> CONTACT</h2>
+        <p>EMAIL: <a href="mailto:developer@example.com">developer@example.com</a></p>
+        <p>PHONE: (123) 456-7890</p>
+        <p>LOCATION: Tech City, Digital Country</p>
+        <p>GITHUB: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+        <p>LINKEDIN: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+        
+        <div class="contact-form">
+            <h3>SEND MESSAGE:</h3>
+            <div class="form-group">
+                <label for="name">NAME:</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="email">EMAIL:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="message">MESSAGE:</label>
+                <textarea id="message" name="message" rows="5"></textarea>
+            </div>
+            <button type="submit">TRANSMIT MESSAGE</button>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 FULL-STACK ENGINEER | ALL RIGHTS RESERVED</p>
+        <p>SYSTEM STATUS: ONLINE | LAST UPDATED: 04/03/2025</p>
+    </div>
+</body>
+</html>
