@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full-Stack Engineer | 1980s Portfolio</title>
+    <title>個人作品集 | Professional Portfolio</title>
     <style>
-        /* 1980s Terminal Style */
-        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        /* 全局樣式 */
+        :root {
+            --primary-color: #333;
+            --secondary-color: #777;
+            --accent-color: #c9a97a;
+            --light-color: #f8f8f8;
+            --dark-color: #222;
+            --transition: all 0.3s ease;
+        }
         
         * {
             margin: 0;
@@ -15,475 +22,934 @@
         }
         
         body {
-            background-color: #000;
-            color: #33ff33;
-            font-family: 'VT323', monospace;
-            font-size: 18px;
-            line-height: 1.4;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            overflow-x: hidden;
+            font-family: 'Noto Serif TC', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: var(--primary-color);
+            background-color: var(--light-color);
         }
         
-        body::before {
-            content: "";
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--accent-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* 導航欄 */
+        header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(transparent, transparent 1px, rgba(0, 0, 0, 0.3) 1px, rgba(0, 0, 0, 0.3) 2px);
-            background-size: 100% 2px;
-            pointer-events: none;
-            z-index: 999;
-            opacity: 0.15;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 20px 0;
         }
         
-        .container {
-            border: 2px solid #33ff33;
-            padding: 20px;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* 英雄區塊 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background-color: white;
+            margin-top: 80px;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: right;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
             margin-bottom: 20px;
-            position: relative;
-        }
-        
-        .container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(51, 255, 51, 0.05);
-            pointer-events: none;
-        }
-        
-        h1, h2, h3 {
-            color: #33ff33;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-        
-        h1 {
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 30px;
-            text-shadow: 0 0 5px #33ff33;
-        }
-        
-        h2 {
-            font-size: 24px;
-            border-bottom: 1px solid #33ff33;
-            padding-bottom: 5px;
-        }
-        
-        h3 {
-            font-size: 20px;
-        }
-        
-        p {
-            margin-bottom: 15px;
-        }
-        
-        ul {
-            margin-left: 25px;
-            margin-bottom: 15px;
-        }
-        
-        li {
-            margin-bottom: 5px;
-        }
-        
-        a {
-            color: #ffbf00;
-            text-decoration: none;
-            border-bottom: 1px dashed #ffbf00;
-            transition: all 0.3s ease;
-        }
-        
-        a:hover {
-            color: #ffffff;
-            border-bottom: 1px solid #ffffff;
-            text-shadow: 0 0 5px #ffbf00;
-        }
-        
-        .blink {
-            animation: blink 1s step-end infinite;
-        }
-        
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .ascii-art {
-            font-size: 12px;
             line-height: 1.2;
-            white-space: pre;
-            text-align: center;
-            margin: 20px 0;
-            color: #33ff33;
         }
         
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .skill-item {
-            border: 1px solid #33ff33;
-            padding: 8px;
-            text-align: center;
-        }
-        
-        .project {
+        .hero h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
             margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed #33ff33;
+            font-weight: 400;
         }
         
-        .project:last-child {
-            border-bottom: none;
+        .social-icons {
+            margin-top: 30px;
         }
         
-        .project-grid {
+        .social-icons a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* 關於我 */
+        .about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .about-image {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+        
+        /* 技能 */
+        .skills {
+            background-color: var(--light-color);
+        }
+        
+        .skills-container {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
         }
         
-        @media (min-width: 600px) {
-            .project-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        .skill-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            text-align: center;
         }
         
-        .project-image {
-            border: 2px solid #33ff33;
+        .skill-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-box h4 {
+            font-size: 1.3rem;
+            margin: 15px 0;
+        }
+        
+        .skill-box p {
+            color: var(--secondary-color);
+        }
+        
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+        }
+        
+        /* 作品集 */
+        .portfolio {
+            background-color: white;
+        }
+        
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .portfolio-filter button {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            color: var(--secondary-color);
+        }
+        
+        .portfolio-filter button.active,
+        .portfolio-filter button:hover {
+            color: var(--accent-color);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
             position: relative;
             overflow: hidden;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .project-image img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .portfolio-item img {
             width: 100%;
-            height: 100%;
+            height: 250px;
             object-fit: cover;
-            filter: sepia(50%) hue-rotate(80deg) saturate(140%);
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
-        .project-image:hover img {
-            filter: sepia(20%) hue-rotate(60deg) saturate(180%);
+        .portfolio-item:hover img {
+            transform: scale(1.1);
         }
         
-        .project-image::before {
-            content: "";
+        .portfolio-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(transparent, transparent 1px, rgba(51, 255, 51, 0.1) 1px, rgba(51, 255, 51, 0.1) 2px);
-            background-size: 100% 2px;
-            pointer-events: none;
-            z-index: 2;
-        }
-        
-        .project-image::after {
-            content: "LOADING...";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #33ff33;
-            font-size: 16px;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1;
+            transition: var(--transition);
         }
         
-        .project-image:hover::after {
+        .portfolio-item:hover .portfolio-overlay {
             opacity: 1;
         }
         
-        .project-details {
+        .portfolio-overlay h4 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .portfolio-overlay p {
+            color: var(--light-color);
+            margin-bottom: 20px;
+        }
+        
+        /* 經驗 */
+        .experience {
+            background-color: var(--light-color);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--accent-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--accent-color);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -12px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+        
+        .timeline-content h5 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .timeline-content p {
+            color: var(--secondary-color);
+        }
+        
+        /* 聯繫 */
+        .contact {
+            background-color: white;
+        }
+        
+        .contact-content {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
         }
         
-        .project-links {
-            margin-top: 10px;
+        .contact-info {
+            flex: 1;
+            padding-right: 50px;
         }
         
-        .project-link {
-            display: inline-block;
-            margin-right: 15px;
-            background-color: #000;
-            color: #33ff33;
-            border: 1px solid #33ff33;
-            padding: 5px 10px;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 14px;
-            transition: all 0.3s ease;
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
         }
         
-        .project-link:hover {
-            background-color: #33ff33;
-            color: #000;
-            border-color: #33ff33;
-            text-shadow: none;
+        .contact-info p {
+            margin-bottom: 30px;
+            color: var(--secondary-color);
         }
         
-        .contact-form {
-            margin-top: 20px;
+        .contact-details {
+            margin-bottom: 30px;
         }
         
-        .form-group {
+        .contact-details div {
+            display: flex;
+            align-items: center;
             margin-bottom: 15px;
         }
         
-        label {
-            display: block;
-            margin-bottom: 5px;
+        .contact-details i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-right: 15px;
         }
         
-        input, textarea {
+        .contact-form {
+            flex: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
             width: 100%;
-            background-color: #000;
-            border: 1px solid #33ff33;
-            color: #33ff33;
-            padding: 8px;
-            font-family: 'VT323', monospace;
-            font-size: 18px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
         }
         
-        button {
-            background-color: #000;
-            color: #33ff33;
-            border: 1px solid #33ff33;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-family: 'VT323', monospace;
-            font-size: 18px;
-            text-transform: uppercase;
+        .form-control:focus {
+            border-color: var(--accent-color);
+            outline: none;
         }
         
-        button:hover {
-            background-color: #33ff33;
-            color: #000;
+        textarea.form-control {
+            height: 150px;
+            resize: none;
         }
         
-        .footer {
+        /* 頁腳 */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
             text-align: center;
-            margin-top: 30px;
-            font-size: 14px;
-            color: #33ff33;
         }
         
-        /* Terminal typing effect */
-        .typing::after {
-            content: "_";
-            animation: blink 1s step-end infinite;
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
         }
         
-        /* Responsive design */
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-                font-size: 16px;
+        .footer-section {
+            flex: 1;
+            padding: 0 20px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+        
+        .footer-section p {
+            margin-bottom: 15px;
+            color: #aaa;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            color: #aaa;
+        }
+        
+        /* 響應式設計 */
+        @media screen and (max-width: 992px) {
+            .hero-content, .about-content, .contact-content {
+                flex-direction: column;
             }
             
-            h1 {
-                font-size: 28px;
+            .hero-text, .about-image, .contact-info {
+                padding-right: 0;
+                margin-bottom: 50px;
             }
             
-            h2 {
-                font-size: 20px;
+            .hero-image, .about-text, .contact-form {
+                text-align: center;
             }
             
-            .skills-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
             }
             
-            .project-grid {
-                grid-template-columns: 1fr;
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item::after {
+                left: 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-section {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="header">
-        <h1>FULL-STACK ENGINEER<span class="blink">_</span></h1>
-        <p>SYSTEM READY. PORTFOLIO LOADED.</p>
-    </div>
-    
-    <div class="ascii-art">
- _____     _ _     _             _    
-|  ___|  _| | |___| |_ __ _  ___| | __
-| |_ | | | | / __| __/ _` |/ __| |/ /
-|  _|| |_| | \__ \ || (_| | (__|   < 
-|_|   \__,_|_|___/\__\__,_|\___|_|\_\
-    </div>
-    
-    <div class="container">
-        <h2>> ABOUT ME</h2>
-        <p class="typing">Experienced full-stack engineer with expertise in building robust web applications. Proficient in both front-end and back-end technologies with a passion for clean, efficient code and user-centered design.</p>
-        <p>SYSTEM SPECS: Problem solver, team player, continuous learner.</p>
-    </div>
-    
-    <div class="container">
-        <h2>> TECHNICAL SKILLS</h2>
-        <div class="skills-grid">
-            <div class="skill-item">HTML5</div>
-            <div class="skill-item">CSS3</div>
-            <div class="skill-item">JavaScript</div>
-            <div class="skill-item">TypeScript</div>
-            <div class="skill-item">React</div>
-            <div class="skill-item">Node.js</div>
-            <div class="skill-item">Express</div>
-            <div class="skill-item">MongoDB</div>
-            <div class="skill-item">SQL</div>
-            <div class="skill-item">Git</div>
-            <div class="skill-item">RESTful APIs</div>
-            <div class="skill-item">GraphQL</div>
-        </div>
-    </div>
-    
-    <div class="container">
-        <h2>> WORK EXPERIENCE</h2>
-        
-        <div class="project">
-            <h3>SENIOR FULL-STACK DEVELOPER</h3>
-            <p>TECH INNOVATIONS INC. | 2020 - PRESENT</p>
-            <ul>
-                <li>Developed and maintained multiple web applications using React and Node.js</li>
-                <li>Implemented RESTful APIs and database schemas</li>
-                <li>Optimized application performance and reduced load times by 40%</li>
-                <li>Collaborated with UX/UI designers to implement responsive designs</li>
-            </ul>
-        </div>
-        
-        <div class="project">
-            <h3>FULL-STACK DEVELOPER</h3>
-            <p>WEB SOLUTIONS CO. | 2017 - 2020</p>
-            <ul>
-                <li>Built and deployed web applications for various clients</li>
-                <li>Managed database design and implementation</li>
-                <li>Integrated third-party APIs and services</li>
-                <li>Mentored junior developers and conducted code reviews</li>
-            </ul>
-        </div>
-        
-        <div class="project">
-            <h3>FRONT-END DEVELOPER</h3>
-            <p>DIGITAL CREATIONS | 2015 - 2017</p>
-            <ul>
-                <li>Created responsive user interfaces using HTML, CSS, and JavaScript</li>
-                <li>Collaborated with back-end developers to integrate front-end with server-side logic</li>
-                <li>Implemented UI/UX improvements based on user feedback</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="container">
-        <h2>> PROJECTS</h2>
-        
-        <div class="project">
-            <div class="project-grid">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="E-Commerce Platform Preview">
+    <!-- 導航欄 -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Portfolio<span>.</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home">首頁</a></li>
+                    <li><a href="#about">關於我</a></li>
+                    <li><a href="#skills">技能</a></li>
+                    <li><a href="#portfolio">作品集</a></li>
+                    <li><a href="#experience">經驗</a></li>
+                    <li><a href="#contact">聯繫</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
                 </div>
-                <div class="project-details">
-                    <h3>E-COMMERCE PLATFORM</h3>
-                    <p>A full-featured online shopping platform with user authentication, product catalog, shopping cart, and payment processing.</p>
-                    <p>TECH STACK: React, Node.js, Express, MongoDB, Stripe API</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link">DEMO</a>
-                        <a href="#" class="project-link">CODE</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄區塊 -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h3>您好，我是</h3>
+                    <h1>王小明</h1>
+                    <h3>UI/UX 設計師 & 前端開發者</h3>
+                    <p>我專注於創建美觀且實用的數位體驗，結合創意設計與前端技術，為用戶打造出色的互動界面。</p>
+                    <a href="#portfolio" class="btn">查看作品</a>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="/placeholder.svg?height=500&width=400" alt="個人照片">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 關於我 -->
+    <section id="about" class="about section">
+        <div class="container">
+            <h2 class="section-title">關於我</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/placeholder.svg?height=400&width=400" alt="關於我照片">
+                </div>
+                <div class="about-text">
+                    <h3>我是一名充滿熱情的設計師與開發者</h3>
+                    <p>擁有5年的設計和開發經驗，我專注於創建既美觀又實用的數位產品。我相信優秀的設計應該是直觀的，能夠解決問題的，並且能夠為用戶帶來愉悅的體驗。</p>
+                    <p>我畢業於台灣大學設計學系，擁有豐富的項目經驗，包括網站設計、移動應用界面設計以及品牌識別設計。我熱愛學習新技術，並將其應用到我的工作中。</p>
+                    <p>在閒暇時間，我喜歡閱讀設計相關書籍，參加設計研討會，以及探索新的創意靈感。</p>
+                    <a href="#" class="btn">下載簡歷</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技能 -->
+    <section id="skills" class="skills section">
+        <div class="container">
+            <h2 class="section-title">我的技能</h2>
+            <div class="skills-container">
+                <div class="skill-box">
+                    <div class="skill-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h4>UI/UX 設計</h4>
+                    <p>創建直觀且吸引人的用戶界面，注重用戶體驗和交互設計。</p>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>前端開發</h4>
+                    <p>使用HTML、CSS和JavaScript構建響應式網站和Web應用程序。</p>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>響應式設計</h4>
+                    <p>確保網站在各種設備上都能完美顯示和運行。</p>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h4>品牌設計</h4>
+                    <p>創建獨特的品牌識別，包括標誌、色彩方案和排版。</p>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>數據可視化</h4>
+                    <p>將複雜的數據轉化為易於理解的視覺表現形式。</p>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h4>原型設計</h4>
+                    <p>創建交互式原型，幫助團隊更好地理解產品功能和流程。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品集 -->
+    <section id="portfolio" class="portfolio section">
+        <div class="container">
+            <h2 class="section-title">我的作品</h2>
+            <div class="portfolio-filter">
+                <button class="active" data-filter="all">全部</button>
+                <button data-filter="web">網站設計</button>
+                <button data-filter="app">應用設計</button>
+                <button data-filter="brand">品牌設計</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <img src="/placeholder.svg?height=250&width=350" alt="作品1">
+                    <div class="portfolio-overlay">
+                        <h4>電商網站設計</h4>
+                        <p>網站設計 / 前端開發</p>
+                        <a href="#" class="btn">查看詳情</a>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="app">
+                    <img src="/placeholder.svg?height=250&width=350" alt="作品2">
+                    <div class="portfolio-overlay">
+                        <h4>健康追蹤應用</h4>
+                        <p>UI設計 / 原型設計</p>
+                        <a href="#" class="btn">查看詳情</a>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="brand">
+                    <img src="/placeholder.svg?height=250&width=350" alt="作品3">
+                    <div class="portfolio-overlay">
+                        <h4>咖啡品牌識別</h4>
+                        <p>品牌設計 / 包裝設計</p>
+                        <a href="#" class="btn">查看詳情</a>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="web">
+                    <img src="/placeholder.svg?height=250&width=350" alt="作品4">
+                    <div class="portfolio-overlay">
+                        <h4>旅遊博客網站</h4>
+                        <p>網站設計 / 前端開發</p>
+                        <a href="#" class="btn">查看詳情</a>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="app">
+                    <img src="/placeholder.svg?height=250&width=350" alt="作品5">
+                    <div class="portfolio-overlay">
+                        <h4>音樂播放器應用</h4>
+                        <p>UI設計 / 交互設計</p>
+                        <a href="#" class="btn">查看詳情</a>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="brand">
+                    <img src="/placeholder.svg?height=250&width=350" alt="作品6">
+                    <div class="portfolio-overlay">
+                        <h4>科技公司品牌重塑</h4>
+                        <p>品牌設計 / 視覺識別</p>
+                        <a href="#" class="btn">查看詳情</a>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="project">
-            <div class="project-grid">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Task Management System Preview">
+    </section>
+
+    <!-- 經驗 -->
+    <section id="experience" class="experience section">
+        <div class="container">
+            <h2 class="section-title">工作經驗</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>資深UI/UX設計師</h4>
+                        <h5>創新科技有限公司 | 2020 - 至今</h5>
+                        <p>負責公司主要產品的用戶界面和用戶體驗設計，與開發團隊緊密合作，確保設計的順利實現。主導了多個成功的產品重設計項目。</p>
+                    </div>
                 </div>
-                <div class="project-details">
-                    <h3>TASK MANAGEMENT SYSTEM</h3>
-                    <p>A collaborative task management application with real-time updates, user roles, and project tracking features.</p>
-                    <p>TECH STACK: React, TypeScript, Node.js, Socket.io, PostgreSQL</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link">DEMO</a>
-                        <a href="#" class="project-link">CODE</a>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>UI設計師</h4>
+                        <h5>數位創意工作室 | 2018 - 2020</h5>
+                        <p>為各種客戶設計網站和移動應用界面，參與從概念到最終產品的整個設計過程。獲得了多個設計獎項的認可。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>前端開發實習生</h4>
+                        <h5>網絡科技公司 | 2017 - 2018</h5>
+                        <p>協助開發和維護公司網站，學習和應用前端技術，包括HTML、CSS和JavaScript。參與了多個小型項目的開發。</p>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="project">
-            <div class="project-grid">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Weather Dashboard Preview">
-                </div>
-                <div class="project-details">
-                    <h3>WEATHER DASHBOARD</h3>
-                    <p>An interactive weather application displaying current conditions and forecasts with data visualization.</p>
-                    <p>TECH STACK: HTML, CSS, JavaScript, Chart.js, Weather API</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link">DEMO</a>
-                        <a href="#" class="project-link">CODE</a>
+    </section>
+
+    <!-- 聯繫 -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2 class="section-title">聯繫我</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>讓我們一起合作</h3>
+                    <p>如果您對我的作品感興趣，或者有任何問題，請隨時與我聯繫。我很樂意討論您的項目需求和可能的合作機會。</p>
+                    <div class="contact-details">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>example@email.com</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-phone"></i>
+                            <span>+886 912 345 678</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>台北市，台灣</span>
+                        </div>
+                    </div>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
                     </div>
                 </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="您的電子郵件">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="主題">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="您的訊息"></textarea>
+                        </div>
+                        <button type="submit" class="btn">發送訊息</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <div class="container">
-        <h2>> CONTACT</h2>
-        <p>EMAIL: <a href="mailto:developer@example.com">developer@example.com</a></p>
-        <p>PHONE: (123) 456-7890</p>
-        <p>LOCATION: Tech City, Digital Country</p>
-        <p>GITHUB: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
-        <p>LINKEDIN: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
-        
-        <div class="contact-form">
-            <h3>SEND MESSAGE:</h3>
-            <div class="form-group">
-                <label for="name">NAME:</label>
-                <input type="text" id="name" name="name">
+    </section>
+
+    <!-- 頁腳 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>關於</h3>
+                    <p>我是一名專業的UI/UX設計師和前端開發者，致力於創建美觀且實用的數位體驗。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速鏈接</h3>
+                    <p><a href="#home">首頁</a></p>
+                    <p><a href="#about">關於我</a></p>
+                    <p><a href="#portfolio">作品集</a></p>
+                    <p><a href="#contact">聯繫</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>聯繫方式</h3>
+                    <p>電子郵件: example@email.com</p>
+                    <p>電話: +886 912 345 678</p>
+                    <p>地址: 台北市，台灣</p>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="email">EMAIL:</label>
-                <input type="email" id="email" name="email">
+            <div class="footer-bottom">
+                <p>&copy; 2025 個人作品集. 版權所有.</p>
             </div>
-            <div class="form-group">
-                <label for="message">MESSAGE:</label>
-                <textarea id="message" name="message" rows="5"></textarea>
-            </div>
-            <button type="submit">TRANSMIT MESSAGE</button>
         </div>
-    </div>
-    
-    <div class="footer">
-        <p>© 2025 FULL-STACK ENGINEER | ALL RIGHTS RESERVED</p>
-        <p>SYSTEM STATUS: ONLINE | LAST UPDATED: 04/03/2025</p>
-    </div>
+    </footer>
+
+    <script>
+        // 導航欄滾動效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+
+        // 漢堡菜單
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // 作品集過濾
+        const filterButtons = document.querySelectorAll('.portfolio-filter button');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // 移除所有按鈕的active類
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // 為當前點擊的按鈕添加active類
+                this.classList.add('active');
+
+                const filter = this.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
